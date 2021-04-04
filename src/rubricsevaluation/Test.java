@@ -42,10 +42,15 @@ public class Test extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jPanel1 = new RoundedPanel(25);
+        logoPanel = new RoundedPanel(25);
+        logo = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
         homeButtonPanel = new RoundedPanel(25);
         homeLabel = new javax.swing.JLabel();
         coursesButtonPanel = new RoundedPanel(25);
         coursesLabel = new javax.swing.JLabel();
+        studentButtonPanel = new RoundedPanel(25);
+        studentLabel = new javax.swing.JLabel();
         jPanel2 = new RoundedPanel(25);
 
         jMenuItem1.setText("Delete");
@@ -55,15 +60,64 @@ public class Test extends javax.swing.JFrame {
         jPopupMenu1.add(jMenuItem2);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Rubrics Evaluation");
         setBackground(new java.awt.Color(255, 255, 255));
         setUndecorated(true);
         setResizable(false);
 
-        jPanel1.setBackground(new java.awt.Color(48, 57, 82));
-        jPanel1.setForeground(new java.awt.Color(48, 57, 82));
+        jPanel1.setBackground(new java.awt.Color(197, 108, 240));
+        jPanel1.setForeground(new java.awt.Color(255, 255, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(68, 494));
 
+        logoPanel.setBackground(new java.awt.Color(255, 255, 255));
+        logoPanel.setForeground(new java.awt.Color(255, 255, 255));
+        logoPanel.setToolTipText("Logo");
+
+        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rubricsevaluation/icons8-inspection-64.png"))); // NOI18N
+        logo.setToolTipText("Logo");
+
+        javax.swing.GroupLayout logoPanelLayout = new javax.swing.GroupLayout(logoPanel);
+        logoPanel.setLayout(logoPanelLayout);
+        logoPanelLayout.setHorizontalGroup(
+            logoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(logoPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(logo)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        logoPanelLayout.setVerticalGroup(
+            logoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(logoPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(logo)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        logoPanel.setOpaque(false);
+
+        jPanel1.add(logoPanel);
+
+        jPanel3.setBackground(new java.awt.Color(197, 108, 240));
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 50, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 50, Short.MAX_VALUE)
+        );
+
+        jPanel1.add(jPanel3);
+
+        homeButtonPanel.setBackground(new java.awt.Color(255, 255, 255));
+        homeButtonPanel.setForeground(new java.awt.Color(255, 255, 255));
+        homeButtonPanel.setToolTipText("Home");
+
         homeLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rubricsevaluation/icons8-home-64.png"))); // NOI18N
+        homeLabel.setToolTipText("Home");
 
         javax.swing.GroupLayout homeButtonPanelLayout = new javax.swing.GroupLayout(homeButtonPanel);
         homeButtonPanel.setLayout(homeButtonPanelLayout);
@@ -72,40 +126,70 @@ public class Test extends javax.swing.JFrame {
             .addGroup(homeButtonPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(homeLabel)
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         homeButtonPanelLayout.setVerticalGroup(
             homeButtonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(homeButtonPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(homeLabel)
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel1.add(homeButtonPanel);
         homeButtonPanel.setOpaque(false);
 
+        coursesButtonPanel.setBackground(new java.awt.Color(255, 255, 255));
+        coursesButtonPanel.setForeground(new java.awt.Color(255, 255, 255));
+        coursesButtonPanel.setToolTipText("Courses");
+
         coursesLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rubricsevaluation/icons8-book-64.png"))); // NOI18N
+        coursesLabel.setToolTipText("Courses");
 
         javax.swing.GroupLayout coursesButtonPanelLayout = new javax.swing.GroupLayout(coursesButtonPanel);
         coursesButtonPanel.setLayout(coursesButtonPanelLayout);
         coursesButtonPanelLayout.setHorizontalGroup(
             coursesButtonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, coursesButtonPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(coursesButtonPanelLayout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(coursesLabel)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         coursesButtonPanelLayout.setVerticalGroup(
             coursesButtonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(coursesButtonPanelLayout.createSequentialGroup()
-                .addGap(14, 14, 14)
+                .addContainerGap()
                 .addComponent(coursesLabel)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel1.add(coursesButtonPanel);
         coursesButtonPanel.setOpaque(false);
+
+        studentButtonPanel.setBackground(new java.awt.Color(255, 255, 255));
+        studentButtonPanel.setForeground(new java.awt.Color(255, 255, 255));
+
+        studentLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rubricsevaluation/icons8-person-64.png"))); // NOI18N
+
+        javax.swing.GroupLayout studentButtonPanelLayout = new javax.swing.GroupLayout(studentButtonPanel);
+        studentButtonPanel.setLayout(studentButtonPanelLayout);
+        studentButtonPanelLayout.setHorizontalGroup(
+            studentButtonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(studentButtonPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(studentLabel)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        studentButtonPanelLayout.setVerticalGroup(
+            studentButtonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(studentButtonPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(studentLabel)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel1.add(studentButtonPanel);
+        studentButtonPanel.setOpaque(false);
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.LINE_START);
         jPanel1.setOpaque(false);
@@ -117,11 +201,11 @@ public class Test extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 790, Short.MAX_VALUE)
+            .addGap(0, 822, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 506, Short.MAX_VALUE)
+            .addGap(0, 519, Short.MAX_VALUE)
         );
 
         getContentPane().add(jPanel2, java.awt.BorderLayout.CENTER);
@@ -140,6 +224,11 @@ public class Test extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JPopupMenu jPopupMenu1;
+    private javax.swing.JLabel logo;
+    private javax.swing.JPanel logoPanel;
+    private javax.swing.JPanel studentButtonPanel;
+    private javax.swing.JLabel studentLabel;
     // End of variables declaration//GEN-END:variables
 }
