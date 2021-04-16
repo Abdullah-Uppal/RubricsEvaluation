@@ -1,0 +1,40 @@
+{
+  "students": [
+    {
+      "registrationNumber": "2020-CS-52",
+      "fatherName": "Asif",
+      "name": "Abdullah",
+      "email": "computerinsider@gmail.com",
+      "cnic": "35200-0000000-0"
+    },
+    {
+      "registrationNumber": "2020-EE-12",
+      "fatherName": "Ali",
+      "name": "Anonymous",
+      "email": "insider@gmail.com",
+      "cnic": "35200-1234567-8"
+    }
+  ],
+  "courses": [
+    {
+      "title": "Programming",
+      "id": "CS-23",
+      "clos": [
+        "Loops",
+        "Variables",
+        "Comments",
+        "Functions",
+        "Recursion"
+      ]
+    },
+    {
+      "title": "Introduction to Computing",
+      "id": "CS-023",
+      "clos": [
+        "Data Structures",
+        "Search Engines",
+        "Problem Solving"
+      ]
+    }
+  ]
+}

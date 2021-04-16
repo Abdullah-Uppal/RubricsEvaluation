@@ -13,10 +13,12 @@ public class RubricsEvaluation {
 
     /**
      * @param args the command line arguments
+     * @throws javax.swing.UnsupportedLookAndFeelException
      */
+    @SuppressWarnings("empty-statement")
     public static void main(String[] args) throws UnsupportedLookAndFeelException {
         UIManager.setLookAndFeel(new FlatLightLaf());
-        new Main().setVisible(true);
+        Main main = new Main();
     }
 
 }
