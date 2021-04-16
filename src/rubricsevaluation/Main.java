@@ -11,6 +11,8 @@ import javax.swing.SwingUtilities;
 import java.awt.Toolkit;
 import java.util.*;
 import java.text.SimpleDateFormat;
+import javax.swing.ComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
@@ -20,7 +22,7 @@ import javax.swing.table.DefaultTableModel;
  * @author abdullah
  */
 public class Main extends javax.swing.JFrame {
-    
+
     private static final int WIDTH = Toolkit.getDefaultToolkit().getScreenSize().width;
     private static final int HEIGHT = Toolkit.getDefaultToolkit().getScreenSize().height;
     //Few Colors
@@ -30,18 +32,19 @@ public class Main extends javax.swing.JFrame {
     private static final Color lightPurple = new Color(197, 108, 240);
     private static final Color white = new Color(255, 255, 255);
     private static final Color electricBlue = new Color(126, 255, 245);
-    
+
     private final DefaultListModel courseListModel = new DefaultListModel();
     private MainSystem system = MainSystem.getInstance();
     private int marks = 0;
+
     /**
      * Creates new form Main
      */
     public Main() {
         initComponents();
         this.setBackground(new Color(0.0f, 0.0f, 0.0f, 0.0f));
-        this.setLocation((WIDTH-this.getWidth())/2, (HEIGHT-this.getHeight())/2);
-        
+        this.setLocation((WIDTH - this.getWidth()) / 2, (HEIGHT - this.getHeight()) / 2);
+
         //Date and time
         SimpleDateFormat date = new SimpleDateFormat("EEEE dd");
         SimpleDateFormat time = new SimpleDateFormat("hh:mm a");
@@ -51,6 +54,7 @@ public class Main extends javax.swing.JFrame {
         system = MainSystem.getInstance();
         System.out.println(system.getCourses());
         System.out.println(system.getStudents());
+
     }
 
     /**
@@ -140,6 +144,8 @@ public class Main extends javax.swing.JFrame {
         rubricField = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
         cloComboBox = new javax.swing.JComboBox<>();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
         jButton7 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -846,6 +852,12 @@ public class Main extends javax.swing.JFrame {
 
         jLabel17.setText("Total Marks: 0");
 
+        coursesBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                coursesBoxActionPerformed(evt);
+            }
+        });
+
         jButton6.setBackground(lightPurple);
         jButton6.setForeground(new java.awt.Color(255, 255, 255));
         jButton6.setText("Add Question");
@@ -858,6 +870,10 @@ public class Main extends javax.swing.JFrame {
 
         jLabel18.setText("Rubric");
 
+        jLabel20.setText("jLabel20");
+
+        jLabel21.setText("CLO");
+
         javax.swing.GroupLayout addQuestionPanelLayout = new javax.swing.GroupLayout(addQuestionPanel);
         addQuestionPanel.setLayout(addQuestionPanelLayout);
         addQuestionPanelLayout.setHorizontalGroup(
@@ -869,7 +885,7 @@ public class Main extends javax.swing.JFrame {
                         .addComponent(jLabel4))
                     .addGroup(addQuestionPanelLayout.createSequentialGroup()
                         .addGap(47, 47, 47)
-                        .addGroup(addQuestionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(addQuestionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(marksBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(addQuestionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(addQuestionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -879,20 +895,24 @@ public class Main extends javax.swing.JFrame {
                                         .addComponent(jButton6))
                                     .addGroup(addQuestionPanelLayout.createSequentialGroup()
                                         .addComponent(jLabel16)
-                                        .addGap(378, 378, 378))
+                                        .addGap(378, 378, 378)))
+                                .addComponent(questionField, javax.swing.GroupLayout.PREFERRED_SIZE, 434, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(addQuestionPanelLayout.createSequentialGroup()
+                                .addGroup(addQuestionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addQuestionPanelLayout.createSequentialGroup()
+                                        .addComponent(jLabel17)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addQuestionPanelLayout.createSequentialGroup()
+                                        .addComponent(jLabel18)
+                                        .addGap(59, 59, 59)))
+                                .addGroup(addQuestionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(coursesBox, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(addQuestionPanelLayout.createSequentialGroup()
                                         .addGroup(addQuestionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addQuestionPanelLayout.createSequentialGroup()
-                                                .addComponent(jLabel17)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addQuestionPanelLayout.createSequentialGroup()
-                                                .addComponent(jLabel18)
-                                                .addGap(59, 59, 59)))
-                                        .addGroup(addQuestionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(coursesBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(cloComboBox, 0, 257, Short.MAX_VALUE))
-                                        .addGap(79, 79, 79)))
-                                .addComponent(questionField, javax.swing.GroupLayout.PREFERRED_SIZE, 434, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                            .addComponent(jLabel20)
+                                            .addComponent(jLabel21, javax.swing.GroupLayout.Alignment.TRAILING))
+                                        .addGap(18, 18, 18)
+                                        .addComponent(cloComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
                 .addContainerGap(52, Short.MAX_VALUE))
         );
         addQuestionPanelLayout.setVerticalGroup(
@@ -902,22 +922,26 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel16)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(questionField, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(addQuestionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel17)
-                    .addGroup(addQuestionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(coursesBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(marksBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(23, 23, 23)
-                .addGroup(addQuestionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel18)
-                    .addComponent(cloComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(addQuestionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
-                    .addComponent(rubricField))
+                .addGroup(addQuestionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(addQuestionPanelLayout.createSequentialGroup()
+                        .addComponent(questionField, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(addQuestionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel17)
+                            .addGroup(addQuestionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(coursesBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(marksBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(23, 23, 23)
+                        .addGroup(addQuestionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel18)
+                            .addComponent(cloComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel21))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(addQuestionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
+                            .addComponent(rubricField)))
+                    .addComponent(jLabel20))
                 .addContainerGap(33, Short.MAX_VALUE))
         );
 
@@ -949,7 +973,7 @@ public class Main extends javax.swing.JFrame {
             .addGroup(assessmentPanelLayout.createSequentialGroup()
                 .addGap(124, 124, 124)
                 .addComponent(addQuestionPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 119, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 125, Short.MAX_VALUE)
                 .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27))
         );
@@ -999,20 +1023,18 @@ public class Main extends javax.swing.JFrame {
 
     private void homeButtonLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_homeButtonLabelMouseClicked
         // TODO add your handling code here:
-        
+
         //homeButtonPanel.setForeground(white);
-        
         courseButtonPanel.setBackground(lightPurple);
         //courseButtonLabel.setForeground(lightPurple);
-        
+
         studentButtonPanel.setBackground(lightPurple);
         //studentButtonLabel.setForeground(lightPurple);
-        
+
         //assessmentButtonLabel.setForeground(lightPurple);
         assessmentButtonPanel.setBackground(lightPurple);
         homeButtonPanel.setBackground(white);
-        
-        
+
         //Changing the view
         stack.removeAll();
         stack.add(dashboard);
@@ -1022,20 +1044,18 @@ public class Main extends javax.swing.JFrame {
 
     private void courseButtonLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_courseButtonLabelMouseClicked
         // TODO add your handling code here:
-        
+
         //courseButtonPanel.setForeground(white);
-        
         homeButtonPanel.setBackground(lightPurple);
         //homeButtonPanel.setForeground(lightPurple);
-        
+
         studentButtonPanel.setBackground(lightPurple);
         //studentButtonPanel.setForeground(lightPurple);
-        
-        
+
         //assessmentButtonPanel.setForeground(lightPurple);
         assessmentButtonPanel.setBackground(lightPurple);
         courseButtonPanel.setBackground(white);
-        
+
         //Changing the view
         stack.removeAll();
         stack.add(coursesPanel);
@@ -1043,18 +1063,26 @@ public class Main extends javax.swing.JFrame {
         stack.revalidate();
         clearCoursesList();
         loadCoursesList();
-       
+        this.addWindowListener(
+                new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                system.saveData();
+            }
+        }
+        );
     }//GEN-LAST:event_courseButtonLabelMouseClicked
+
 
     private void studentButtonLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_studentButtonLabelMouseClicked
         // TODO add your handling code here:
-        
+
         homeButtonPanel.setBackground(lightPurple);
         //homeButtonPanel.setForeground(lightPurple);
-        
+
         courseButtonPanel.setBackground(lightPurple);
         //courseButtonPanel.setForeground(lightPurple);
-        
+
         //assessmentButtonPanel.setForeground(lightPurple);
         assessmentButtonPanel.setBackground(lightPurple);
         studentButtonPanel.setBackground(white);
@@ -1062,39 +1090,45 @@ public class Main extends javax.swing.JFrame {
         stack.add(studentPanel);
         stack.repaint();
         stack.revalidate();
-        
-        DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
+
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         clearCourseTable();
-        for (int i = 0; i<system.getCourses().size(); i++) {
+        for (int i = 0; i < system.getCourses().size(); i++) {
             model.addRow(new Object[]{false, system.getCourses().get(i).getTitle()});
         }
         jTable1.setModel(model);
     }//GEN-LAST:event_studentButtonLabelMouseClicked
-    
+
     private void clearCourseTable() {
-        ((DefaultTableModel)jTable1.getModel()).setRowCount(0);
+        ((DefaultTableModel) jTable1.getModel()).setRowCount(0);
     }
-    
+
     private void assessmentButtonLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_assessmentButtonLabelMouseClicked
         // TODO add your handling code here:
         //assessmentButtonPanel.setForeground(white);
         assessmentButtonPanel.setBackground(white);
-        
+
         homeButtonPanel.setBackground(lightPurple);
         //homeButtonPanel.setForeground(lightPurple);
-        
+
         studentButtonPanel.setBackground(lightPurple);
         //studentButtonPanel.setForeground(lightPurple);
-        
+
         courseButtonPanel.setBackground(lightPurple);
         //courseButtonPanel.setForeground(lightPurple);
         stack.removeAll();
         stack.add(assessmentPanel);
         stack.repaint();
         stack.revalidate();
-        
+
         //
-        
+        DefaultComboBoxModel f = new DefaultComboBoxModel();
+        f.addElement("Select Course");
+        for (int i = 0; i < system.getCourses().size(); i++) {
+            f.addElement(system.getCourses().get(i).getTitle());
+        }
+        coursesBox.setModel(f);
+
     }//GEN-LAST:event_assessmentButtonLabelMouseClicked
 
     private void idFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idFieldActionPerformed
@@ -1117,13 +1151,14 @@ public class Main extends javax.swing.JFrame {
         loadCoursesList();
         System.out.println(system.getCourses());
     }//GEN-LAST:event_jButton1ActionPerformed
-    
+
     private void clearCoursesList() {
         coursesList.setModel(new DefaultListModel());
     }
+
     private void loadCoursesList() {
         DefaultListModel model = new DefaultListModel();
-        for (int i = 0; i<system.getCourses().size(); i++) {
+        for (int i = 0; i < system.getCourses().size(); i++) {
             model.addElement(system.getCourses().get(i).getTitle());
         }
         coursesList.setModel(model);
@@ -1167,11 +1202,27 @@ public class Main extends javax.swing.JFrame {
         // TODO add your handling code here:
         system.saveData();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void coursesBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_coursesBoxActionPerformed
+        // TODO add your handling code here:
+        DefaultComboBoxModel f = new DefaultComboBoxModel();
+        cloComboBox.setModel(f);
+        String courseTitle = (String) coursesBox.getSelectedItem();
+        for (int i = 0; i < system.getCourses().size(); i++) {
+            if (system.getCourses().get(i).getTitle().equals(courseTitle)) {
+                for (int ft = 0; ft < system.getCourses().get(i).getClos().size(); ft++) {
+                    f.addElement(system.getCourses().get(i).getClos().get(ft));
+                }
+                break;
+            }
+        }
+        cloComboBox.setModel(f);
+    }//GEN-LAST:event_coursesBoxActionPerformed
     private void updateStudentList() {
         jList1.setModel(new DefaultListModel());
         DefaultListModel f = new DefaultListModel();
-        for (int i = 0; i<system.getStudents().size(); i++) {
-            f.addElement(system.getStudents().get(i).getName()+", " +system.getStudents().get(i).getRegistrationNumber());
+        for (int i = 0; i < system.getStudents().size(); i++) {
+            f.addElement(system.getStudents().get(i).getName() + ", " + system.getStudents().get(i).getRegistrationNumber());
         }
         jList1.setModel(f);
     }
@@ -1223,6 +1274,8 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
