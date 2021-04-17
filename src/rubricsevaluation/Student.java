@@ -15,6 +15,11 @@ public class Student extends Person {
     private ArrayList<Assessment> attemptedTest;
     private ArrayList<String> enrolledCourses;
 
+    @Override
+    public String toString() {
+        return "Student{" + "registrationNumber=" + registrationNumber + ", fatherName=" + fatherName + ", attemptedTest=" + attemptedTest + ", enrolledCourses=" + enrolledCourses + '}';
+    }
+
     public Student(String registrationNumber, String fatherName, ArrayList<Assessment> attemptedTest, ArrayList<String> enrolledCourses, String name, String email, String cnic) {
         super(name, email, cnic);
         this.registrationNumber = registrationNumber;

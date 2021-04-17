@@ -23,6 +23,11 @@ public class MainSystem {
         this.students = new ArrayList<Student>();
         this.courses = new ArrayList<Course>();
     }
+
+    @Override
+    public String toString() {
+        return "MainSystem{" + "teacher=" + teacher + ", students=" + students + ", courses=" + courses + '}';
+    }
     public static MainSystem getInstance() {
         if (MainSystem.instance == null) {
             MainSystem.instance = new MainSystem();

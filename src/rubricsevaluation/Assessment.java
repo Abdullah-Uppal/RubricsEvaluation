@@ -50,6 +50,11 @@ public class Assessment {
     public void setObtainedMarks(int obtainedMarks) {
         this.obtainedMarks = obtainedMarks;
     }
+
+    @Override
+    public String toString() {
+        return "Assessment{" + "questions=" + questions + ", totalMarks=" + totalMarks + ", obtainedMarks=" + obtainedMarks + '}';
+    }
     
     
 }

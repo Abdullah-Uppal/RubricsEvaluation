@@ -17,9 +17,20 @@ import javax.swing.DefaultListModel;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 import com.google.gson.*;
+import com.itextpdf.text.BaseColor;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JComboBox;
 import javax.swing.table.TableColumn;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.pdf.PdfWriter;
+import com.itextpdf.text.Chunk;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.FontFactory;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -47,7 +58,8 @@ public class Main extends javax.swing.JFrame {
      */
     public Main() {
         initComponents();
-        this.setBackground(new Color(0.0f, 0.0f, 0.0f, 0.0f));
+        
+        
         this.setLocation((WIDTH - this.getWidth()) / 2, (HEIGHT - this.getHeight()) / 2);
 
         //Date and time
@@ -163,7 +175,6 @@ public class Main extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Rubrics Evaluation");
-        setUndecorated(true);
         setResizable(false);
 
         back.setBackground(new java.awt.Color(246, 246, 247));
@@ -978,7 +989,7 @@ public class Main extends javax.swing.JFrame {
                     .addComponent(rubricField))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel20)
-                .addContainerGap(8, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         jButton7.setBackground(lightPurple);
@@ -1014,7 +1025,7 @@ public class Main extends javax.swing.JFrame {
             .addGroup(assessmentPanelLayout.createSequentialGroup()
                 .addGap(124, 124, 124)
                 .addComponent(addQuestionPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 144, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 124, Short.MAX_VALUE)
                 .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27))
         );
@@ -1313,7 +1324,7 @@ public class Main extends javax.swing.JFrame {
                 Assessment f = a.get(i);
                 for (int j = 0; j<f.getQuestions().size(); j++) {
                     Question q = f.getQuestions().get(i);
-                    Object []row = {q.getClo(), q.getQuestion(), String.format("%s/%s", q.getObtainedMarks(), q.getTotalMarks())};
+                    Object []row = {q.getClo(), q.getQuestion(), "0"};
                     model.addRow(row);
                     t.setCellEditor(new DefaultCellEditor(levels));
                 }
@@ -1338,6 +1349,22 @@ public class Main extends javax.swing.JFrame {
     
     private void clearJTable2() {
         ((DefaultTableModel)jTable2.getModel()).setRowCount(0);
+    }
+    
+    private int getLevel(String level) {
+        if (level.startsWith("P")) {
+            return 1;
+        }
+        else if (level.startsWith("F")) {
+            return 2;
+        }
+        else if (level.startsWith("G")) {
+            return 3;
+        }
+        else if (level.startsWith("E")) {
+            return 4;
+        }
+        return 0;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -16,6 +16,11 @@ public class Question {
     private int totalMarks;
     private int obtainedMarks;
 
+    @Override
+    public String toString() {
+        return "Question{" + "question=" + question + ", rubric=" + rubric + ", clo=" + clo + ", totalMarks=" + totalMarks + ", obtainedMarks=" + obtainedMarks + '}';
+    }
+
     public Question(String question, String rubric, String clo, int totalMarks) {
         this.question = question;
         this.rubric = rubric;

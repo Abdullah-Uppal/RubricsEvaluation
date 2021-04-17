@@ -16,6 +16,12 @@ public class Course {
     private String title;
     private String id;
     private  List<String> clos;
+
+    @Override
+    public String toString() {
+        return "Course{" + "title=" + title + ", id=" + id + ", clos=" + clos + '}';
+    }
+    
     Course (String title, String id, List<String> clos) {
         this.title = title;
         this.id = id;
