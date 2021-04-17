@@ -1336,6 +1336,11 @@ public class Main extends javax.swing.JFrame {
     private void jTable2PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jTable2PropertyChange
         // TODO add your handling code here:
         int index = jTable2.getSelectedRow();
+        if (index<0){return;}
+        int studentIndex = jList1.getSelectedIndex();
+        Student s = system.getStudents().get(studentIndex);
+        s.getAttemptedTest().get(index).setObtainedMarks(getLevel((String)jTable2.getValueAt(index, 3)));
+        jTable2.setValueAt(getLevel((String)jTable2.getValueAt(index, 3)), index, 3);
         
     }//GEN-LAST:event_jTable2PropertyChange
     private void updateStudentList() {
@@ -1352,6 +1357,9 @@ public class Main extends javax.swing.JFrame {
     }
     
     private int getLevel(String level) {
+        if (level == null) {
+            return 0;
+        }
         if (level.startsWith("P")) {
             return 1;
         }
