@@ -16,7 +16,6 @@ public class Course {
     private String title;
     private String id;
     private  List<String> clos;
-    
     Course (String title, String id, List<String> clos) {
         this.title = title;
         this.id = id;

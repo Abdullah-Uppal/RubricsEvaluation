@@ -16,6 +16,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
+import com.google.gson.*;
 
 /**
  *
@@ -36,6 +37,7 @@ public class Main extends javax.swing.JFrame {
     private final DefaultListModel courseListModel = new DefaultListModel();
     private MainSystem system = MainSystem.getInstance();
     private int marks = 0;
+    private ArrayList<Question> questions = new ArrayList<Question>();
 
     /**
      * Creates new form Main
@@ -144,8 +146,8 @@ public class Main extends javax.swing.JFrame {
         rubricField = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
         cloComboBox = new javax.swing.JComboBox<>();
-        jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
         jButton7 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -861,6 +863,11 @@ public class Main extends javax.swing.JFrame {
         jButton6.setBackground(lightPurple);
         jButton6.setForeground(new java.awt.Color(255, 255, 255));
         jButton6.setText("Add Question");
+        jButton6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton6MouseClicked(evt);
+            }
+        });
 
         rubricField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -870,9 +877,9 @@ public class Main extends javax.swing.JFrame {
 
         jLabel18.setText("Rubric");
 
-        jLabel20.setText("jLabel20");
-
         jLabel21.setText("CLO");
+
+        jLabel20.setForeground(new java.awt.Color(255, 51, 0));
 
         javax.swing.GroupLayout addQuestionPanelLayout = new javax.swing.GroupLayout(addQuestionPanel);
         addQuestionPanel.setLayout(addQuestionPanelLayout);
@@ -890,12 +897,14 @@ public class Main extends javax.swing.JFrame {
                             .addGroup(addQuestionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(addQuestionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addGroup(addQuestionPanelLayout.createSequentialGroup()
+                                        .addComponent(jLabel16)
+                                        .addGap(378, 378, 378))
+                                    .addGroup(addQuestionPanelLayout.createSequentialGroup()
                                         .addComponent(rubricField)
                                         .addGap(18, 18, 18)
-                                        .addComponent(jButton6))
-                                    .addGroup(addQuestionPanelLayout.createSequentialGroup()
-                                        .addComponent(jLabel16)
-                                        .addGap(378, 378, 378)))
+                                        .addGroup(addQuestionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel20)
+                                            .addComponent(jButton6))))
                                 .addComponent(questionField, javax.swing.GroupLayout.PREFERRED_SIZE, 434, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(addQuestionPanelLayout.createSequentialGroup()
                                 .addGroup(addQuestionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -908,9 +917,8 @@ public class Main extends javax.swing.JFrame {
                                 .addGroup(addQuestionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(coursesBox, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(addQuestionPanelLayout.createSequentialGroup()
-                                        .addGroup(addQuestionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel20)
-                                            .addComponent(jLabel21, javax.swing.GroupLayout.Alignment.TRAILING))
+                                        .addGap(27, 27, 27)
+                                        .addComponent(jLabel21)
                                         .addGap(18, 18, 18)
                                         .addComponent(cloComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
                 .addContainerGap(52, Short.MAX_VALUE))
@@ -923,32 +931,36 @@ public class Main extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel16)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(questionField, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(addQuestionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(addQuestionPanelLayout.createSequentialGroup()
-                        .addComponent(questionField, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(addQuestionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel17)
-                            .addGroup(addQuestionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(coursesBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(marksBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(23, 23, 23)
-                        .addGroup(addQuestionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel18)
-                            .addComponent(cloComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel21))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(addQuestionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
-                            .addComponent(rubricField)))
-                    .addComponent(jLabel20))
-                .addContainerGap(33, Short.MAX_VALUE))
+                    .addComponent(jLabel17)
+                    .addGroup(addQuestionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(coursesBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(marksBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(23, 23, 23)
+                .addGroup(addQuestionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel18)
+                    .addComponent(cloComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel21))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(addQuestionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
+                    .addComponent(rubricField))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel20)
+                .addContainerGap(8, Short.MAX_VALUE))
         );
 
         jButton7.setBackground(lightPurple);
         jButton7.setForeground(new java.awt.Color(255, 255, 255));
         jButton7.setText("Save Changes");
         jButton7.setBorderPainted(false);
+        jButton7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton7MouseClicked(evt);
+            }
+        });
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton7ActionPerformed(evt);
@@ -973,7 +985,7 @@ public class Main extends javax.swing.JFrame {
             .addGroup(assessmentPanelLayout.createSequentialGroup()
                 .addGap(124, 124, 124)
                 .addComponent(addQuestionPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 125, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 144, Short.MAX_VALUE)
                 .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27))
         );
@@ -1218,6 +1230,31 @@ public class Main extends javax.swing.JFrame {
         }
         cloComboBox.setModel(f);
     }//GEN-LAST:event_coursesBoxActionPerformed
+
+    private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
+        // TODO add your handling code here:
+        jLabel20.setText("");
+        String question = questionField.getText();
+        int marks = Integer.parseInt((String)marksBox.getSelectedItem());
+        String clo = (String)cloComboBox.getSelectedItem();
+        String rubric = rubricField.getText();
+        
+        if (question.isBlank() || rubric.isBlank()) {
+            jLabel20.setText("Fill All!");
+            return;
+        }
+        questions.add(new Question(question, rubric, clo, marks));
+        
+    }//GEN-LAST:event_jButton6MouseClicked
+
+    private void jButton7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseClicked
+        // TODO add your handling code here:
+        int totalMarks = 0;
+        for (int i = 0; i<this.questions.size(); i++) {
+            totalMarks += this.questions.get(i).getTotalMarks();
+        }
+        system.addAssessment(new Assessment(questions, totalMarks), system.getCourseId((String)coursesBox.getSelectedItem()));
+    }//GEN-LAST:event_jButton7MouseClicked
     private void updateStudentList() {
         jList1.setModel(new DefaultListModel());
         DefaultListModel f = new DefaultListModel();

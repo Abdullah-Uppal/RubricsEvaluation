@@ -101,9 +101,31 @@ public class MainSystem {
         catch (IOException e) {}
         
     }
-
-//    public MainSystem(ArrayList<Student> students, ArrayList<Course> courses) {
-//        this.students = students;
-//        this.courses = courses;
-//    }
+    
+    public void addAssessment(Assessment s, String courseId) {
+        
+        Gson gson = new Gson();
+        if (MainSystem.getInstance().getStudents() == null) {
+            System.out.println("IT IS NULL");
+            return;
+        }
+        else if (MainSystem.getInstance().getStudents().get(0).getEnrolledCourses() == null) {
+            System.out.println("IT IS ANOTHER NULL");
+            return;
+        }
+        for (int i = 0; i<MainSystem.getInstance().getStudents().size(); i++) {
+            if (MainSystem.getInstance().getStudents().get(i).getEnrolledCourses().contains(courseId)) {
+                MainSystem.getInstance().getStudents().get(i).getAttemptedTest().add(gson.fromJson(gson.toJson(s), Assessment.class));
+            }
+        }
+    }
+    
+    public String getCourseId(String title) {
+        for (int i = 0; i<MainSystem.getInstance().getCourses().size(); i++) {
+            if (MainSystem.getInstance().getCourses().get(i).getTitle().equals(title)) {
+                return MainSystem.getInstance().getCourses().get(i).getId();
+            }
+        }
+        return null;
+    }
 }

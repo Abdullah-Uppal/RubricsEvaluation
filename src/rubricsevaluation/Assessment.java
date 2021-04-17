@@ -15,8 +15,11 @@ import java.util.ArrayList;
 public class Assessment {
     private List<Question> questions;
     private int totalMarks;
+    private int obtainedMarks;
 
     public Assessment() {
+        this.totalMarks = 0;
+        this.obtainedMarks = 0;
     }
 
     public Assessment(List<Question> questions, int totalMarks) {
@@ -38,6 +41,14 @@ public class Assessment {
 
     public void setTotalMarks(int totalMarks) {
         this.totalMarks = totalMarks;
+    }
+
+    public int getObtainedMarks() {
+        return obtainedMarks;
+    }
+
+    public void setObtainedMarks(int obtainedMarks) {
+        this.obtainedMarks = obtainedMarks;
     }
     
     

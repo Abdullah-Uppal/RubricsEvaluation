@@ -13,6 +13,24 @@ public class Student extends Person {
     private String registrationNumber;
     private String fatherName;
     private ArrayList<Assessment> attemptedTest;
+    private ArrayList<String> enrolledCourses;
+
+    public Student(String registrationNumber, String fatherName, ArrayList<Assessment> attemptedTest, ArrayList<String> enrolledCourses, String name, String email, String cnic) {
+        super(name, email, cnic);
+        this.registrationNumber = registrationNumber;
+        this.fatherName = fatherName;
+        this.attemptedTest = attemptedTest;
+        this.enrolledCourses = enrolledCourses;
+    }
+
+    public ArrayList<String> getEnrolledCourses() {
+        return enrolledCourses;
+    }
+
+    public void setEnrolledCourses(ArrayList<String> enrolledCourses) {
+        this.enrolledCourses = enrolledCourses;
+    }
+    
 
     public String getRegistrationNumber() {
         return registrationNumber;
@@ -33,6 +51,8 @@ public class Student extends Person {
         super(name, email, cnic);
         this.registrationNumber = registrationNumber;
         this.fatherName = fatherName;
+        this.attemptedTest = new ArrayList<>();
+        this.enrolledCourses = new ArrayList<>();
     }
 
     public ArrayList<Assessment> getAttemptedTest() {
@@ -43,4 +63,7 @@ public class Student extends Person {
         this.attemptedTest = attemptedTest;
     }
 
+    public boolean isEnrolled(String courseId) {
+        return this.enrolledCourses.contains(courseId);
+    }
 }
