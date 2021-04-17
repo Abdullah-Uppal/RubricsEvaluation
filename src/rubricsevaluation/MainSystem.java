@@ -98,8 +98,7 @@ public class MainSystem {
             reader.close();
             
         }
-        catch (IOException e) {}
-        
+        catch (IOException e) {}   
     }
     
     public void addAssessment(Assessment s, String courseId) {

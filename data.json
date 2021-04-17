@@ -1,39 +1,86 @@
 {
   "students": [
     {
-      "registrationNumber": "2020-CS-52",
+      "registrationNumber": "2021-CS-38",
       "fatherName": "Asif",
-      "name": "Abdullah",
-      "email": "computerinsider@gmail.com",
-      "cnic": "35200-0000000-0"
+      "attemptedTest": [
+        {
+          "questions": [
+            {
+              "question": "afdafg",
+              "rubric": "adfaet",
+              "clo": "To know how to create and manage the code",
+              "totalMarks": 2,
+              "obtainedMarks": 0
+            }
+          ],
+          "totalMarks": 2,
+          "obtainedMarks": 0
+        }
+      ],
+      "enrolledCourses": [
+        "CS-101"
+      ],
+      "name": "Unknown Banda",
+      "email": "gmail@hotmail.com",
+      "cnic": "09824092409823908"
     },
     {
-      "registrationNumber": "2020-EE-12",
-      "fatherName": "Ali",
-      "name": "Anonymous",
-      "email": "insider@gmail.com",
-      "cnic": "35200-1234567-8"
+      "registrationNumber": "2020-CS-83",
+      "fatherName": "Fawad",
+      "attemptedTest": [],
+      "enrolledCourses": [
+        "CS-101"
+      ],
+      "name": "Rana G",
+      "email": "hotmail@gmail.com",
+      "cnic": "12345-678901-0"
+    },
+    {
+      "registrationNumber": "2020-CS-96",
+      "fatherName": "Shahbaz",
+      "attemptedTest": [
+        {
+          "questions": [
+            {
+              "question": "What is the root of Decision tree?",
+              "rubric": "Use of Decision Tree",
+              "clo": "Decision Making",
+              "totalMarks": 3,
+              "obtainedMarks": 0
+            }
+          ],
+          "totalMarks": 3,
+          "obtainedMarks": 0
+        }
+      ],
+      "enrolledCourses": [
+        "CS-101",
+        "CS-102"
+      ],
+      "name": "Ali",
+      "email": "skype@teams.com",
+      "cnic": "35200-9876567-2"
     }
   ],
   "courses": [
     {
-      "title": "Programming",
-      "id": "CS-23",
+      "title": "Programming Fundamentals",
+      "id": "CS-101",
       "clos": [
-        "Loops",
-        "Variables",
-        "Comments",
-        "Functions",
-        "Recursion"
+        "Know how to use and manipulate variables",
+        "To know how to create and manage the code",
+        "Logic Building"
       ]
     },
     {
       "title": "Introduction to Computing",
-      "id": "CS-023",
+      "id": "CS-102",
       "clos": [
-        "Data Structures",
-        "Search Engines",
-        "Problem Solving"
+        "Data Strucutures",
+        "Basic of Computer",
+        "Storage Devices",
+        "Decision Making"
       ]
     }
   ]

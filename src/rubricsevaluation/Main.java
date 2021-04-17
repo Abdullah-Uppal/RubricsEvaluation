@@ -17,6 +17,9 @@ import javax.swing.DefaultListModel;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 import com.google.gson.*;
+import javax.swing.DefaultCellEditor;
+import javax.swing.JComboBox;
+import javax.swing.table.TableColumn;
 
 /**
  *
@@ -56,6 +59,14 @@ public class Main extends javax.swing.JFrame {
         system = MainSystem.getInstance();
         System.out.println(system.getCourses());
         System.out.println(system.getStudents());
+        this.addWindowListener(
+                new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                system.saveData();
+            }
+        }
+        );
 
     }
 
@@ -749,6 +760,11 @@ public class Main extends javax.swing.JFrame {
         studentListPanel.setBackground(new java.awt.Color(126, 255, 245));
         studentListPanel.setForeground(new java.awt.Color(126, 255, 245));
 
+        jList1.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                jList1ValueChanged(evt);
+            }
+        });
         jScrollPane5.setViewportView(jList1);
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
@@ -759,9 +775,22 @@ public class Main extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "CLO", "Question", "Assessment", "Rubric Level"
+                "CLO", "Question", "Marks", "Rubric Level"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable2.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jTable2PropertyChange(evt);
+            }
+        });
         jScrollPane6.setViewportView(jTable2);
 
         jButton4.setText("Delete Selected");
@@ -1075,14 +1104,7 @@ public class Main extends javax.swing.JFrame {
         stack.revalidate();
         clearCoursesList();
         loadCoursesList();
-        this.addWindowListener(
-                new java.awt.event.WindowAdapter() {
-            @Override
-            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
-                system.saveData();
-            }
-        }
-        );
+        
     }//GEN-LAST:event_courseButtonLabelMouseClicked
 
 
@@ -1109,6 +1131,7 @@ public class Main extends javax.swing.JFrame {
             model.addRow(new Object[]{false, system.getCourses().get(i).getTitle()});
         }
         jTable1.setModel(model);
+        updateStudentList();
     }//GEN-LAST:event_studentButtonLabelMouseClicked
 
     private void clearCourseTable() {
@@ -1200,7 +1223,15 @@ public class Main extends javax.swing.JFrame {
             return;
         }
         system.addStudent(new Student(roll, father, name, email, cnic));
+        System.out.println(system.getStudents());
+        for (int i = 0; i<jTable1.getRowCount(); i++) {
+            if ((boolean)jTable1.getValueAt(i, 0)) {
+                int last = system.getStudents().size()-1;
+                system.getStudents().get(last).getEnrolledCourses().add(system.getCourseId((String)jTable1.getValueAt(i, 1)));
+            }
+        }
         updateStudentList();
+        
     }//GEN-LAST:event_addStudentButtonActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -1255,6 +1286,47 @@ public class Main extends javax.swing.JFrame {
         }
         system.addAssessment(new Assessment(questions, totalMarks), system.getCourseId((String)coursesBox.getSelectedItem()));
     }//GEN-LAST:event_jButton7MouseClicked
+
+    private void jList1ValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jList1ValueChanged
+        // TODO add your handling code here:
+        
+        
+        JComboBox<String> levels =  new JComboBox<>();
+        levels.addItem("Poor");
+        levels.addItem("Fair");
+        levels.addItem("Good");
+        levels.addItem("Excellent");
+        
+        
+        
+        int index = jList1.getSelectedIndex();
+        clearJTable2();
+        if (index == -1) {
+            //Setting the row count to 0
+        }
+        else {
+            DefaultTableModel model = (DefaultTableModel)jTable2.getModel();
+            Student s = system.getStudents().get(index);
+            ArrayList<Assessment> a = s.getAttemptedTest();
+            for (int i = 0; i<a.size(); i++) {
+                TableColumn t = jTable2.getColumnModel().getColumn(3);
+                Assessment f = a.get(i);
+                for (int j = 0; j<f.getQuestions().size(); j++) {
+                    Question q = f.getQuestions().get(i);
+                    Object []row = {q.getClo(), q.getQuestion(), String.format("%s/%s", q.getObtainedMarks(), q.getTotalMarks())};
+                    model.addRow(row);
+                    t.setCellEditor(new DefaultCellEditor(levels));
+                }
+            }
+        }
+        
+    }//GEN-LAST:event_jList1ValueChanged
+
+    private void jTable2PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jTable2PropertyChange
+        // TODO add your handling code here:
+        int index = jTable2.getSelectedRow();
+        
+    }//GEN-LAST:event_jTable2PropertyChange
     private void updateStudentList() {
         jList1.setModel(new DefaultListModel());
         DefaultListModel f = new DefaultListModel();
@@ -1262,6 +1334,10 @@ public class Main extends javax.swing.JFrame {
             f.addElement(system.getStudents().get(i).getName() + ", " + system.getStudents().get(i).getRegistrationNumber());
         }
         jList1.setModel(f);
+    }
+    
+    private void clearJTable2() {
+        ((DefaultTableModel)jTable2.getModel()).setRowCount(0);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

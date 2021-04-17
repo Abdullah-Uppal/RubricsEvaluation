@@ -51,8 +51,8 @@ public class Student extends Person {
         super(name, email, cnic);
         this.registrationNumber = registrationNumber;
         this.fatherName = fatherName;
-        this.attemptedTest = new ArrayList<>();
-        this.enrolledCourses = new ArrayList<>();
+        this.attemptedTest = new ArrayList<Assessment>();
+        this.enrolledCourses = new ArrayList<String>();
     }
 
     public ArrayList<Assessment> getAttemptedTest() {
